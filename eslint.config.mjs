@@ -22,3 +22,7 @@ export default {
     },
   },
 };
+
+if (typeof globalThis.structuredClone === 'undefined') {
+  globalThis.structuredClone = structuredClone;
+}

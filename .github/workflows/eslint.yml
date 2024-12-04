@@ -1,0 +1,30 @@
+name: ESLint Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check out repo
+        uses: actions/checkout@v2
+
+      - name: set up node
+        uses: actions/setup-node@v3
+        with:
+            node-version: 20
+
+      - name: check node and npm version
+        run: |
+          node -v
+          npm -v
+
+      - name: npm install
+        run: npm ci
+
+      - name: eslint
+        run: npm run lint

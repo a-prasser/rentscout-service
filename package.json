@@ -1,0 +1,20 @@
+{
+  "name": "service",
+  "version": "1.0.0",
+  "description": "This is the Service application for the [CS 262 RentScout Project](https://github.com/calvin-cs262-fall2024-teamG/Project)",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "eslint": "^9.15.0",
+    "eslint-plugin-react": "^7.37.2",
+    "globals": "^15.12.0"
+  },
+  "dependencies": {
+    "react": "^18.3.1"
+  }
+}

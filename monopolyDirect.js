@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+
 /**
  * This module implements direct, Android-to-Postgres access to the Monopoly DB.
  * The database is hosted on Azure PostgreSQL. I needed to add my local public

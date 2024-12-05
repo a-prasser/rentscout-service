@@ -1,6 +1,4 @@
-/* eslint-disable no-template-curly-in-string */
-/* eslint-disable no-console */
-/* eslint-disable no-use-before-define */
+
 /**
  * This module implements a REST-inspired webservice for the Monopoly DB.
  * The database is hosted on ElephantSQL.

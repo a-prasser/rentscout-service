@@ -6,16 +6,10 @@
 
 -- several pieces of data in this database are incorrect and merely for demonstration purposes
 -- this includes:
--- property pet friendly status and rating
--- landlord phones, emails, and websites
--- student names and emails
-
--- Drop old Monopoly tables if they exist
--- These can be removed once this file has been run once
-DROP TABLE IF EXISTS Property;
-DROP TABLE IF EXISTS PlayerGame;
-DROP TABLE IF EXISTS Game;
-DROP TABLE IF EXISTS Player;
+-- property: pet friendly status and rating
+-- landlord: phones, emails, and websites
+-- student: names and emails
+-- review: all
 
 -- Drop outdated RentScout tables if they exist
 

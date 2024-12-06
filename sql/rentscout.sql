@@ -34,7 +34,7 @@ CREATE TABLE Property (
     distanceToCalvin FLOAT,
     distanceToBusStop FLOAT,
     petFriendly BOOLEAN,
-    rating FLOAT,
+    rating FLOAT
 );
 
 CREATE TABLE Landlord ( 
@@ -42,20 +42,20 @@ CREATE TABLE Landlord (
     name varchar(100),
     Website varchar(100),
     phoneNumber varchar(15),
-    emailAddress nvarchar(255),
+    emailAddress varchar(255)
 );
 
 CREATE TABLE Student (
     ID SERIAL PRIMARY KEY,
     name varchar(100),
-    email nvarchar(255),
+    email varchar(255)
 );
 
 -- PropertyLandlord might be able to be merged with Property unless we want to keep track of multiple landlords for a single property
 
 CREATE TABLE PropertyLandlord (
     propertyID integer REFERENCES Property(ID), 
-    landlordID integer REFERENCES Landlord(ID),
+    landlordID integer REFERENCES Landlord(ID)
 );
 
 GRANT SELECT ON Property TO PUBLIC;
@@ -86,19 +86,19 @@ INSERT INTO Landlord VALUES (6, 'Aiesha Reynolds', null, '616-555-5555', 'aiesha
 INSERT INTO Landlord VALUES (7, 'HCW Realty', null, null, null);
 INSERT INTO Landlord VALUES (8, 'Rental Properties Consultant LLC', null, null, null);
 
-INSERT INTO Student (1, 'Theo', 'fake_email@calvin.edu');
-INSERT INTO Student (2, 'Jonathan', 'fake_email_2@calvin.edu');
+INSERT INTO Student VALUES (1, 'Theo', 'fake_email@calvin.edu');
+INSERT INTO Student VALUES (2, 'Jonathan', 'fake_email_2@calvin.edu');
 
-INSERT INTO PropertyLandlord (1, 1);
-INSERT INTO PropertyLandlord (2, 1);
-INSERT INTO PropertyLandlord (3, 1);
-INSERT INTO PropertyLandlord (4, 1);
-INSERT INTO PropertyLandlord (5, 1);
-INSERT INTO PropertyLandlord (6, 2);
-INSERT INTO PropertyLandlord (7, 3);
-INSERT INTO PropertyLandlord (8, 4);
-INSERT INTO PropertyLandlord (9, 4);
-INSERT INTO PropertyLandlord (10, 5);
-INSERT INTO PropertyLandlord (11, 6);
-INSERT INTO PropertyLandlord (12, 7);
-INSERT INTO PropertyLandlord (13, 8);
+INSERT INTO PropertyLandlord VALUES (1, 1);
+INSERT INTO PropertyLandlord VALUES (3, 1);
+INSERT INTO PropertyLandlord VALUES (2, 1);
+INSERT INTO PropertyLandlord VALUES (4, 1);
+INSERT INTO PropertyLandlord VALUES (5, 1);
+INSERT INTO PropertyLandlord VALUES (6, 2);
+INSERT INTO PropertyLandlord VALUES (7, 3);
+INSERT INTO PropertyLandlord VALUES (8, 4);
+INSERT INTO PropertyLandlord VALUES (9, 4);
+INSERT INTO PropertyLandlord VALUES (10, 5);
+INSERT INTO PropertyLandlord VALUES (11, 6);
+INSERT INTO PropertyLandlord VALUES (12, 7);
+INSERT INTO PropertyLandlord VALUES (13, 8);

@@ -38,18 +38,13 @@ const db = pgp({
 // Configure the server and its routes.
 
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
 const router = express.Router();
 router.use(express.json());
-
-// router.get('/', readHelloMessage);
-// router.get('/players', readPlayers);
-// router.get('/players/:id', readPlayer);
-// router.put('/players/:id', updatePlayer);
-// router.post('/players', createPlayer);
-// router.delete('/players/:id', deletePlayer);
+app.use(cors());
 
 router.get('/', readHelloMessage);
 router.get('/properties', readProperties);

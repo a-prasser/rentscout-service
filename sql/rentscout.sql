@@ -58,6 +58,13 @@ CREATE TABLE PropertyLandlord (
     landlordID integer REFERENCES Landlord(ID)
 );
 
+CREATE TABLE Review (
+    studentID integer REFERENCES Student(ID),
+    propertyID integer REFERENCES Property(ID),
+    rating FLOAT,
+    reviewText varchar(2047)
+);
+
 GRANT SELECT ON Property TO PUBLIC;
 GRANT SELECT ON Landlord TO PUBLIC;
 GRANT SELECT ON Student TO PUBLIC;

@@ -1,2 +1,2 @@
-web: node monopolyService.js
-direct: node monopolyDirect.js
+web: node rentScoutService.js
+direct: node rentScoutDirect.js

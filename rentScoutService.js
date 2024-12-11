@@ -1,26 +1,18 @@
 
 /**
- * This module implements a REST-inspired webservice for the Monopoly DB.
- * The database is hosted on ElephantSQL.
- *
- * Currently, the service supports the player table only.
- *
+ * This module implements a REST-inspired webservice for the RentScout DB.
+ * The database is hosted on Azure PostgreSQL.
+ * *
  * To guard against SQL injection attacks, this code uses pg-promise's built-in
- * variable escaping. This prevents a client from issuing this URL:
- *     https://cs262-webservice.azurewebsites.net//players/1%3BDELETE%20FROM%20PlayerGame%3BDELETE%20FROM%20Player
- * which would delete records in the PlayerGame and then the Player tables.
- * In particular, we don't use JS template strings because it doesn't filter
+ * variable escaping.
+ * We don't use JS template strings because it doesn't filter
  * client-supplied values properly.
- * TODO: Consider using Prepared Statements.
- *      https://vitaly-t.github.io/pg-promise/PreparedStatement.html
  *
  * This service assumes that the database connection strings and the server mode are
- * set in environment variables. See the DB_* variables used by pg-promise. And
- * setting NODE_ENV to production will cause ExpressJS to serve up uninformative
- * server error responses for all errors.
+ * set in environment variables. See the DB_* variables used by pg-promise.
  *
- * @author: kvlinden
- * @date: Summer, 2020
+ * @author: jtlun
+ * @date: Fall, 2024
  */
 
 // Set up the database connection.
@@ -53,13 +45,15 @@ router.get('/landlords', readLandlords);
 router.get('/landlords/:id', readLandlord);
 router.get('/students', readStudents);
 router.get('/students/:id', readStudent);
-router.get('/propertyLandlords', readPropertyLandlords);
-router.get('/propertyLandlords', readPropertyLandlord);
+router.get('/reviews', readReviews);
+router.get('/reviews/:id', readReview);
 
 app.use(router);
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // Implement the CRUD operations.
+
+// Currently only the Read operations are implemented.
 
 function returnDataOr404(res, data) {
   if (data == null) {
@@ -134,8 +128,8 @@ function readStudent(req, res, next) {
     });
 }
 
-function readPropertyLandlords(req, res, next) {
-  db.many('SELECT * FROM PropertyLandlord')
+function readReviews(req, res, next) {
+  db.many('SELECT * FROM Review')
     .then((data) => {
       res.send(data);
     })
@@ -144,8 +138,8 @@ function readPropertyLandlords(req, res, next) {
     });
 }
 
-function readPropertyLandlord(req, res, next) {
-  db.oneOrNone('SELECT * FROM PropertyLandlord WHERE id=${id}', req.params)
+function readReview(req, res, next) {
+  db.oneOrNone('SELECT * FROM Review WHERE id=${id}', req.params)
     .then((data) => {
       returnDataOr404(res, data);
     })

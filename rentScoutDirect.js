@@ -1,8 +1,7 @@
 
 /**
- * This module implements direct, Android-to-Postgres access to the Monopoly DB.
- * The database is hosted on Azure PostgreSQL. I needed to add my local public
- * IP address to the Azure networking firewall access list.
+ * This module implements direct, Client-to-Postgres access to the RentScout DB.
+ * The database is hosted on Azure PostgreSQL.
  *
  * Because the PGP connection variables are stored as Heroku config vars, store
  * those values in .env (stored locally and listed in .gitignore so that they're
@@ -11,8 +10,7 @@
  *      source .env-azure
  *      node monopolyDirect.js
  *
- * @author: kvlinden
- * @date: Summer, 2020
+ * @author: jtlun
  * @date: Fall, 2024 - updates for Azure PostgreSQL
  */
 

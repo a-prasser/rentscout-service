@@ -42,14 +42,13 @@ CREATE TABLE Property (
     price integer,
     distanceToCalvin FLOAT,
     distanceToBusStop FLOAT,
-    petFriendly BOOLEAN,
-    rating FLOAT
+    petFriendly BOOLEAN
 );
 
 CREATE TABLE Review (
     studentID integer REFERENCES Student(ID),
     propertyID integer REFERENCES Property(ID),
-    rating FLOAT,
+    rating integer,
     reviewText varchar(2047)
 );
 
@@ -70,16 +69,20 @@ INSERT INTO Landlord VALUES (6, 'Aiesha Reynolds', null, '616-555-5555', 'aiesha
 INSERT INTO Landlord VALUES (7, 'HCW Realty', null, null, null);
 INSERT INTO Landlord VALUES (8, 'Rental Properties Consultant LLC', null, null, null);
 
-INSERT INTO Property VALUES (1, 1, null, '1610 Rossman Ave, Grand Rapids MI, 49507', 5, 2.5, 2200, 2.2, 0.6, true, 4.5);
-INSERT INTO Property VALUES (2, 1, null, '1024 Burton St SE, Grand Rapids, MI 49507', 4, 2, 1750, 2.8, 0.3, false, 4.0);
-INSERT INTO Property VALUES (3, 1, null, '1421 Sherman St SE, Grand Rapids, MI 49506', 5, 2, 2000, 2.8, 0.4, false, 4.0);
-INSERT INTO Property VALUES (4, 1, null, '249 Alger St SE, Grand Rapids, MI 49507', 5, 2, 1950, 3.8, 0.3, false, 2.4);
-INSERT INTO Property VALUES (5, 1, null, '1314 Boston St SE, Grand Rapids, MI 40507', 4, 2, 1700, 2.5, 0.2, true, 3.5);
-INSERT INTO Property VALUES (6, 2, null, '118 National Ave SW, Grand Rapids, MI 49504', 2, 1, 1475, 5.4, 0.2, true, 3.0);
-INSERT INTO Property VALUES (7, 3, null, '2010 Deciduous Dr, Grand Rapids MI 49505', 2, 3, 2280, 4.8, 0.7, false, 4.9);
-INSERT INTO Property VALUES (8, 4, null, '2142 Stafford Ave SW, Grand Rapids, MI 49507', 3, 1, 2000, 4.5, 0.3, true, 3.4);
-INSERT INTO Property VALUES (9, 4, null, '3476 Bluebird Ave SW, Wyoming MI, 49519', 3, 1, 2100, 7.4, 0.3, false, 4.8);
-INSERT INTO Property VALUES (10, 5, null, '1126 Merrifield St SE, Grand Rapids, MI 49507', 4, 1, 1895, 2.7, 0.2, false, 4.7);
-INSERT INTO Property VALUES (11, 6, null, '636 Innes St NE, Grand Rapids, MI 49503', 2, 1, 1000, 4.2, 0.4, true, 3.9);
-INSERT INTO Property VALUES (12, 7, null, '471 Emerald Ave NE, Grand Rapids, MI 49503', 4, 1, 1900, 4.2, 0.2, false, 4.2);
-INSERT INTO Property VALUES (13, 8, null, '1020 Sigsbee St SE, Grand Rapids, MI 49506', 5, 2, 3200, 3.3, 0.1, true, 4.6);
+INSERT INTO Property VALUES (1, 1, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/1610%20Rossman.png', '1610 Rossman Ave, Grand Rapids MI, 49507', 5, 2.5, 2200, 2.2, 0.6, true);
+INSERT INTO Property VALUES (2, 1, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/1024%20Burton.png', '1024 Burton St SE, Grand Rapids, MI 49507', 4, 2, 1750, 2.8, 0.3, false);
+INSERT INTO Property VALUES (3, 1, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/1421%20Sherman.png', '1421 Sherman St SE, Grand Rapids, MI 49506', 5, 2, 2000, 2.8, 0.4, false);
+INSERT INTO Property VALUES (4, 1, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/249%20Alger.png', '249 Alger St SE, Grand Rapids, MI 49507', 5, 2, 1950, 3.8, 0.3, false);
+INSERT INTO Property VALUES (5, 1, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/1314%20Boston.png', '1314 Boston St SE, Grand Rapids, MI 40507', 4, 2, 1700, 2.5, 0.2, true);
+INSERT INTO Property VALUES (6, 2, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/118%20National.png', '118 National Ave SW, Grand Rapids, MI 49504', 2, 1, 1475, 5.4, 0.2, true);
+INSERT INTO Property VALUES (7, 3, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/2010%20Deciduous.png', '2010 Deciduous Dr, Grand Rapids MI 49505', 2, 3, 2280, 4.8, 0.7, false);
+INSERT INTO Property VALUES (8, 4, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/2142%20Stafford.png', '2142 Stafford Ave SW, Grand Rapids, MI 49507', 3, 1, 2000, 4.5, 0.3, true);
+INSERT INTO Property VALUES (9, 4, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/3476%20Bluebird.png', '3476 Bluebird Ave SW, Wyoming MI, 49519', 3, 1, 2100, 7.4, 0.3, false);
+INSERT INTO Property VALUES (10, 5, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/1126%20Merrifield.png', '1126 Merrifield St SE, Grand Rapids, MI 49507', 4, 1, 1895, 2.7, 0.2, false);
+INSERT INTO Property VALUES (11, 6, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/636%20Innes.png', '636 Innes St NE, Grand Rapids, MI 49503', 2, 1, 1000, 4.2, 0.4, true);
+INSERT INTO Property VALUES (12, 7, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/471%20Emerald.png', '471 Emerald Ave NE, Grand Rapids, MI 49503', 4, 1, 1900, 4.2, 0.2, false);
+INSERT INTO Property VALUES (13, 8, 'https://github.com/calvin-cs262-fall2024-teamG/Project/blob/main/StreetView%20Pics/1020%20Sigsbee.png', '1020 Sigsbee St SE, Grand Rapids, MI 49506', 5, 2, 3200, 3.3, 0.1, true);
+
+INSERT INTO Review VALUES (1, 1, 5, 'Great place to live! The landlord is very responsive and the property is well maintained.');
+INSERT INTO Review VALUES (1, 2, 4, 'The property is nice, but the landlord is not very responsive.');
+INSERT INTO Review VALUES (2, 8, 2, 'the property is not well maintained and the landlord is not responsive.');

@@ -67,46 +67,7 @@ function readHelloMessage(req, res) {
   res.send('RentScout Web Service is running\nFor more information, see https://github.com/calvin-cs262-fall2024-teamG/Service/blob/main/README.md');
 }
 
-
-function readProperties(req, res, next) {
-  db.many('SELECT * FROM Property')
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      next(err);
-    });
-}
-
-function readProperty(req, res, next) {
-  db.oneOrNone('SELECT * FROM Property WHERE id=${id}', req.params)
-    .then((data) => {
-      returnDataOr404(res, data);
-    })
-    .catch((err) => {
-      next(err);
-    });
-} 
-
-function readLandlords(req, res, next) {
-  db.many('SELECT * FROM Landlord')
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      next(err);
-    });
-}
-
-function readLandlord(req, res, next) {
-  db.oneOrNone('SELECT * FROM Landlord WHERE id=${id}', req.params)
-    .then((data) => {
-      returnDataOr404(res, data);
-    })
-    .catch((err) => {
-      next(err);
-    });
-}
+// Student CRUD operations
 
 function readStudents(req, res, next) {
   db.many('SELECT * FROM Student')
@@ -128,6 +89,52 @@ function readStudent(req, res, next) {
     });
 }
 
+// Landlord CRUD operations
+
+function readLandlords(req, res, next) {
+  db.many('SELECT * FROM Landlord')
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+function readLandlord(req, res, next) {
+  db.oneOrNone('SELECT * FROM Landlord WHERE id=${id}', req.params)
+    .then((data) => {
+      returnDataOr404(res, data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+// Property CRUD operations
+
+function readProperties(req, res, next) {
+  db.many('SELECT * FROM Property')
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+function readProperty(req, res, next) {
+  db.oneOrNone('SELECT * FROM Property WHERE id=${id}', req.params)
+    .then((data) => {
+      returnDataOr404(res, data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+// Review CRUD operations
+
 function readReviews(req, res, next) {
   db.many('SELECT * FROM Review')
     .then((data) => {
@@ -147,6 +154,8 @@ function readReview(req, res, next) {
       next(err);
     });
 }
+
+// Archived Functions
 
 // function updatePlayer(req, res, next) {
 //   db.oneOrNone('UPDATE Player SET email=${body.email}, name=${body.name} WHERE id=${params.id} RETURNING id', req)

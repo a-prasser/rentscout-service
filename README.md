@@ -7,12 +7,12 @@ This is the Service application for the [CS 262 RentScout Project](https://githu
 It has the following read data route URLs:
 
 - `/` a hello message
-- `/properties` a list of properties
-- `/properties/:id` a single property with given ID
-- `/landlords` a list of landlords
-- `/landlords/:id` a single landlord with given ID
 - `/students` a list of students
 - `/students/:id` a single student with given ID
+- `/landlords` a list of landlords
+- `/landlords/:id` a single landlord with given ID
+- `/properties` a list of properties
+- `/properties/:id` a single property with given ID
 - `/reviews` a list of reviews
 - `/reviews/:id` a single review with given ID
 

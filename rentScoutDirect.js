@@ -29,8 +29,32 @@ const db = pgp({
   }
 });
 
-// Send the SQL command directly to Postgres.
-db.many('SELECT * FROM Player')
+// Check tables and send information to Postgres
+db.many('SELECT * FROM Student')
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.log('ERROR:', error);
+  });
+
+db.many('SELECT * FROM Landlord')
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.log('ERROR:', error);
+  });
+
+db.many('SELECT * FROM Property')
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.log('ERROR:', error);
+  });
+
+db.many('SELECT * FROM Review')
   .then((data) => {
     console.log(data);
   })

@@ -64,7 +64,7 @@ function returnDataOr404(res, data) {
 }
 
 function readHelloMessage(req, res) {
-  res.send('Hello, CS 262 Monopoly service!');
+  res.send('RentScout Web Service is running\nFor more information, see https://github.com/calvin-cs262-fall2024-teamG/Service/blob/main/README.md');
 }
 
 

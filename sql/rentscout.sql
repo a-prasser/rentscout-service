@@ -20,7 +20,6 @@ DROP TABLE IF EXISTS Student;
 
 CREATE TABLE Student (
     ID SERIAL PRIMARY KEY,
-    name varchar(100),
     email varchar(255)
 );
 
@@ -57,8 +56,8 @@ GRANT SELECT ON Landlord TO PUBLIC;
 GRANT SELECT ON Property TO PUBLIC;
 GRANT SELECT ON Review TO PUBLIC;
 
-INSERT INTO Student VALUES (1, 'Theo', 'fake_email@calvin.edu');
-INSERT INTO Student VALUES (2, 'Jonathan', 'fake_email_2@calvin.edu');
+INSERT INTO Student VALUES (1, 'fake_email@calvin.edu');
+INSERT INTO Student VALUES (2, 'fake_email_2@calvin.edu');
 
 INSERT INTO Landlord VALUES (1, 'Erik Kraayeveld', 'https://www.kraayeveldproperties.com/', '616-123-4567', 'contact@kraayeveldproperties.com');
 INSERT INTO Landlord VALUES (2, 'Cathy Sevigny', null, null, null);

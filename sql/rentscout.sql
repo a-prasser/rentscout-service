@@ -11,9 +11,13 @@
 -- student: names and emails
 -- review: all
 
+-- This drop can be removed after running once
+
+DROP TABLE IF EXISTS PropertyLandlord;
+
 -- Drop outdated RentScout tables if they exist
 
-DROP TABLE IF EXISTS Rview;
+DROP TABLE IF EXISTS Review;
 DROP TABLE IF EXISTS Property;
 DROP TABLE IF EXISTS Landlord;
 DROP TABLE IF EXISTS Student;
@@ -34,7 +38,7 @@ CREATE TABLE Landlord (
 CREATE TABLE Property (
     ID SERIAL PRIMARY KEY,
     landlordID integer REFERENCES Landlord(ID),
-    bannerImage varchar(100),
+    bannerImage varchar(1000),
     streetAddress varchar(100),
     bedroomNum integer,
     bathroomNum FLOAT,
@@ -95,8 +99,7 @@ INSERT INTO Review VALUES (1, 7, 4, 'The property is nice, but the landlord is n
 INSERT INTO Review VALUES (2, 8, 3, 'The property is nice, but the landlord is not very responsive.');
 INSERT INTO Review VALUES (1, 9, 5, 'Great place to live! The landlord is very responsive and the property is well maintained.');
 INSERT INTO Review VALUES (2, 10, 2, 'the property is not well maintained and the landlord is not responsive.');
-INSERT INTO Review VALUES (1, 11, 5, 'Great place to live! The landlord is very responsive and the property is well maintained.');
-
+INSERT INTO Review VALUES (1, 11, 5, 'Great place to live! The landlord is very responsive and the property is well maintained.'); 
 INSERT INTO Review VALUES (1, 1, 4, 'Excellent product, will buy again!');
 INSERT INTO Review VALUES (2, 2, 3, 'Not bad, but could be improved.');
 INSERT INTO Review VALUES (1, 3, 5, 'Would recommend to others.');
@@ -107,7 +110,6 @@ INSERT INTO Review VALUES (1, 7, 4, 'It’s okay, but the price is a bit high.')
 INSERT INTO Review VALUES (2, 8, 3, 'Good value for the money.');
 INSERT INTO Review VALUES (1, 9, 1, 'The product arrived damaged, not happy with it.');
 INSERT INTO Review VALUES (2, 10, 5, 'Amazing! Exceeded my expectations, highly recommend.');
-
 INSERT INTO Review VALUES (1, 1, 4, 'Excellent product, will buy again!');
 INSERT INTO Review VALUES (2, 2, 3, 'Not bad, but could be improved.');
 INSERT INTO Review VALUES (1, 3, 5, 'Would recommend to others.');
@@ -117,7 +119,6 @@ INSERT INTO Review VALUES (2, 6, 2, 'Not great, had a few issues with it.');
 INSERT INTO Review VALUES (1, 7, 4, 'It’s okay, but the price is a bit high.');
 INSERT INTO Review VALUES (2, 8, 3, 'Good value for the money.');
 INSERT INTO Review VALUES (1, 9, 1, 'The product arrived damaged, not happy with it.');
-
 INSERT INTO Review VALUES (1, 1, 4, 'Excellent product, will buy again!');
 INSERT INTO Review VALUES (2, 2, 3, 'Not bad, but could be improved.');
 INSERT INTO Review VALUES (1, 3, 5, 'Would recommend to others.');
@@ -126,7 +127,6 @@ INSERT INTO Review VALUES (1, 5, 5, 'Five stars! Very satisfied with this purcha
 INSERT INTO Review VALUES (2, 6, 2, 'Not great, had a few issues with it.');
 INSERT INTO Review VALUES (1, 7, 4, 'It’s okay, but the price is a bit high.');
 INSERT INTO Review VALUES (2, 8, 3, 'Good value for the money.');
-
 INSERT INTO Review VALUES (1, 1, 4, 'Excellent product, will buy again!');
 INSERT INTO Review VALUES (2, 2, 3, 'Not bad, but could be improved.');
 INSERT INTO Review VALUES (1, 3, 5, 'Would recommend to others.');
@@ -134,30 +134,24 @@ INSERT INTO Review VALUES (2, 4, 2, 'Pretty decent, but the quality isn’t top-
 INSERT INTO Review VALUES (1, 5, 5, 'Five stars! Very satisfied with this purchase.');
 INSERT INTO Review VALUES (2, 6, 2, 'Not great, had a few issues with it.');
 INSERT INTO Review VALUES (1, 7, 4, 'It’s okay, but the price is a bit high.');
-
 INSERT INTO Review VALUES (1, 1, 4, 'Excellent product, will buy again!');
 INSERT INTO Review VALUES (2, 2, 3, 'Not bad, but could be improved.');
 INSERT INTO Review VALUES (1, 3, 5, 'Would recommend to others.');
 INSERT INTO Review VALUES (2, 4, 2, 'Pretty decent, but the quality isn’t top-notch.');
 INSERT INTO Review VALUES (1, 5, 5, 'Five stars! Very satisfied with this purchase.');
 INSERT INTO Review VALUES (2, 6, 2, 'Not great, had a few issues with it.');
-
 INSERT INTO Review VALUES (1, 1, 4, 'Excellent product, will buy again!');
 INSERT INTO Review VALUES (2, 2, 3, 'Not bad, but could be improved.');
 INSERT INTO Review VALUES (1, 3, 5, 'Would recommend to others.');
 INSERT INTO Review VALUES (2, 4, 2, 'Pretty decent, but the quality isn’t top-notch.');
 INSERT INTO Review VALUES (1, 5, 5, 'Five stars! Very satisfied with this purchase.');
-
-INSERT INTO Review VALUES (1, 1, 4, 'Excellent product, will buy again!');
-INSERT INTO Review VALUES (0, 2, 3, 'Not bad, but could be improved.');
-INSERT INTO Review VALUES (1, 3, 5, 'Would recommend to others.');
-INSERT INTO Review VALUES (0, 4, 2, 'Pretty decent, but the quality isn’t top-notch.');
-
 INSERT INTO Review VALUES (1, 1, 4, 'Excellent product, will buy again!');
 INSERT INTO Review VALUES (2, 2, 3, 'Not bad, but could be improved.');
 INSERT INTO Review VALUES (1, 3, 5, 'Would recommend to others.');
-
+INSERT INTO Review VALUES (2, 4, 2, 'Pretty decent, but the quality isn’t top-notch.');
+INSERT INTO Review VALUES (1, 1, 4, 'Excellent product, will buy again!');
+INSERT INTO Review VALUES (2, 2, 3, 'Not bad, but could be improved.');
+INSERT INTO Review VALUES (1, 3, 5, 'Would recommend to others.');
 INSERT INTO Review VALUES (2, 1, 2, 'Pretty decent, but the quality isn’t top-notch.');
 INSERT INTO Review VALUES (1, 2, 4, 'Good value for the money!');
-
 INSERT INTO Review VALUES (2, 1, 5, 'Five stars! Very satisfied with this purchase.');

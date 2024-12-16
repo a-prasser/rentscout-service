@@ -266,9 +266,9 @@ function readReviews(req, res, next) {
 // Read Reviews for a Property
 
 function readReviewsProperty(req, res, next) {
-  db.oneOrNone('SELECT * FROM Review WHERE propertyID=${id}', req.params)
+  db.many('SELECT * FROM Review WHERE propertyID=${id}', req.params)
     .then((data) => {
-      returnDataOr404(res, data);
+      res.send(res, data);
     })
     .catch((err) => {
       next(err);

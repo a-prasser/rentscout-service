@@ -289,7 +289,7 @@ function readReviewsProperty(req, res, next) {
 // CRUD Single Review
 
 function createReview(req, res, next) {
-  db.one('INSERT INTO Review(studentID, propertyID, rating, reviewText) VALUES (${studentID}, ${propertyID}, ${rating}, ${reviewText})', req.body)
+  db.one('INSERT INTO Review(studentID, propertyID, rating, reviewText) VALUES (${studentID}, ${propertyID}, ${rating}, ${reviewText}) RETURNING studentID, propertyID', req.body)
     .then((data) => {
       res.send(data);
     })
@@ -327,35 +327,3 @@ function deleteReview(req, res, next) {
       next(err);
     });
 }
-
-// Archived Functions
-
-// function updatePlayer(req, res, next) {
-//   db.oneOrNone('UPDATE Player SET email=${body.email}, name=${body.name} WHERE id=${params.id} RETURNING id', req)
-//     .then((data) => {
-//       returnDataOr404(res, data);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// }
-
-// function createPlayer(req, res, next) {
-//   db.one('INSERT INTO Player(email, name) VALUES (${email}, ${name}) RETURNING id', req.body)
-//     .then((data) => {
-//       res.send(data);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// }
-
-// function deletePlayer(req, res, next) {
-//   db.oneOrNone('DELETE FROM Player WHERE id=${id} RETURNING id', req.params)
-//     .then((data) => {
-//       returnDataOr404(res, data);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// }

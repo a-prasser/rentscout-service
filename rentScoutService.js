@@ -268,7 +268,7 @@ function readReviews(req, res, next) {
 function readReviewsProperty(req, res, next) {
   db.many('SELECT * FROM Review WHERE propertyID=${id}', req.params)
     .then((data) => {
-      res.send(res, data);
+      res.send(data);
     })
     .catch((err) => {
       next(err);

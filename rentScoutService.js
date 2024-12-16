@@ -289,7 +289,13 @@ function readReviewsProperty(req, res, next) {
 // CRUD Single Review
 
 function createReview(req, res, next) {
-  db.one('INSERT INTO Review(studentID, propertyID, rating, reviewText) VALUES (${studentID}, ${propertyID}, ${rating}, ${reviewText})', req.body)
+  const { studentID, propertyID, rating, reviewText } = req.body;
+  db.one('INSERT INTO Review(studentID, propertyID, rating, reviewText) VALUES (${studentID}, ${propertyID}, ${rating}, ${reviewText}) RETURNING id', {
+    studentID,
+    propertyID,
+    rating,
+    reviewText
+  })
     .then((data) => {
       res.send(data);
     })

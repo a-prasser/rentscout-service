@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS Student;
 
 CREATE TABLE Student (
     ID SERIAL PRIMARY KEY,
-    email varchar(255)
+    email varchar(255) UNIQUE NOT NULL
 );
 
 CREATE TABLE Landlord ( 
@@ -60,17 +60,17 @@ GRANT SELECT ON Landlord TO PUBLIC;
 GRANT SELECT ON Property TO PUBLIC;
 GRANT SELECT ON Review TO PUBLIC;
 
-INSERT INTO Student VALUES (1, 'jtl23@calvin.edu');
-INSERT INTO Student VALUES (2, 'tkp89@calvin.edu');
-INSERT INTO Student VALUES (3, 'oef45@calvin.edu');
-INSERT INTO Student VALUES (4, 'mvp32@calvin.edu');
-INSERT INTO Student VALUES (5, 'pql8@calvin.edu');
-INSERT INTO Student VALUES (6, 'kvl1@calvin.edu');
-INSERT INTO Student VALUES (7, 'pio92@calvin.edu');
-INSERT INTO Student VALUES (8, 'qne12@calvin.edu');
-INSERT INTO Student VALUES (9, 'kpl8@calvin.edu');
-INSERT INTO Student VALUES (10, 'yyt7@calvin.edu');
-INSERT INTO Student VALUES (11, 'asd123@calvin.edu');
+INSERT INTO Student(email) VALUES ('jtl23@calvin.edu');
+INSERT INTO Student(email) VALUES ('tkp89@calvin.edu');
+INSERT INTO Student(email) VALUES ('oef45@calvin.edu');
+INSERT INTO Student(email) VALUES ('mvp32@calvin.edu');
+INSERT INTO Student(email) VALUES ('pql8@calvin.edu');
+INSERT INTO Student(email) VALUES ('kvl1@calvin.edu');
+INSERT INTO Student(email) VALUES ('pio92@calvin.edu');
+INSERT INTO Student(email) VALUES ('qne12@calvin.edu');
+INSERT INTO Student(email) VALUES ('kpl8@calvin.edu');
+INSERT INTO Student(email) VALUES ('yyt7@calvin.edu');
+INSERT INTO Student(email) VALUES ('asd123@calvin.edu');
 
 INSERT INTO Landlord VALUES (1, 'Erik Kraayeveld', 'https://www.kraayeveldproperties.com/', '616-123-4567', 'contact@kraayeveldproperties.com');
 INSERT INTO Landlord VALUES (2, 'Cathy Sevigny', null, null, null);

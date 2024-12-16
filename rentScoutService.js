@@ -42,6 +42,14 @@ router.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 
+app.use((req, res, next) => {
+  res.cookie('cookieName', 'cookieValue', {
+    sameSite: 'None',
+    secure: true,
+  });
+  next();
+});
+
 router.get('/', readHelloMessage);
 
 router.get('/students', readStudents);

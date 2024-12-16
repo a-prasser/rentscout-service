@@ -39,14 +39,36 @@ router.use(express.json());
 app.use(cors());
 
 router.get('/', readHelloMessage);
-router.get('/properties', readProperties);
-router.get('/properties/:id', readProperty);
-router.get('/landlords', readLandlords);
-router.get('/landlords/:id', readLandlord);
+
 router.get('/students', readStudents);
+
+router.post('/students', createStudent);
 router.get('/students/:id', readStudent);
+router.put('/students/:id', updateStudent);
+router.delete('/students/:id', deleteStudent);
+
+router.get('/landlords', readLandlords);
+
+router.post('/landlords', createLandlord);
+router.get('/landlords/:id', readLandlord);
+router.put('/landlords/:id', updateLandlord);
+router.delete('/landlords/:id', deleteLandlord);
+
+router.get('/properties', readProperties);
+
+router.post('/properties', createProperty);
+router.get('/properties/:id', readProperty);
+router.put('/properties/:id', updateProperty);
+router.delete('/properties/:id', deleteProperty);
+
 router.get('/reviews', readReviews);
+
 router.get('/reviews/:id', readReviewsProperty);
+
+router.post('/reviews', createReview);
+router.get('/reviews/:studentID/:propertyID', readReview);
+router.put('/reviews/:studentID/:propertyID', updateReview);
+router.delete('/reviews/:studentID/:propertyID', deleteReview);
 
 app.use(router);
 app.listen(port, () => console.log(`Listening on port ${port}`));
@@ -67,10 +89,22 @@ function readHelloMessage(req, res) {
   res.send('RentScout Web Service is running\nFor more information, see https://github.com/calvin-cs262-fall2024-teamG/Service/blob/main/README.md');
 }
 
-// Student CRUD operations
+// Read All students
 
 function readStudents(req, res, next) {
   db.many('SELECT * FROM Student')
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+// CRUD Single Student
+
+function createStudent(req, res, next) {
+  db.one('INSERT INTO Student(email) VALUES (${email}) RETURNING id', req.body)
     .then((data) => {
       res.send(data);
     })
@@ -89,10 +123,42 @@ function readStudent(req, res, next) {
     });
 }
 
-// Landlord CRUD operations
+function updateStudent(req, res, next) {
+  db.oneOrNone('UPDATE Student SET email=${body.email} WHERE id=${params.id} RETURNING id', req)
+    .then((data) => {
+      returnDataOr404(res, data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+function deleteStudent(req, res, next) {
+  db.oneOrNone('DELETE FROM Student WHERE id=${id} RETURNING id', req.params)
+    .then((data) => {
+      returnDataOr404(res, data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+// Read all landlords
 
 function readLandlords(req, res, next) {
   db.many('SELECT * FROM Landlord')
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+// CRUD Single Landlord
+
+function createLandlord(req, res, next) {
+  db.one('INSERT INTO Landlord(name, website, phoneNumber, emailAddress) VALUES (${name}, ${website}, ${phoneNumber}, ${emailAddress}) RETURNING id', req.body)
     .then((data) => {
       res.send(data);
     })
@@ -111,10 +177,42 @@ function readLandlord(req, res, next) {
     });
 }
 
-// Property CRUD operations
+function updateLandlord(req, res, next) {
+  db.oneOrNone('UPDATE Landlord SET name=${body.name}, website=${body.website}, phoneNumber=${body.phoneNumber}, emailAddress=${body.emailAddress} WHERE id=${params.id} RETURNING id', req)
+    .then((data) => {
+      returnDataOr404(res, data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+function deleteLandlord(req, res, next) {
+  db.oneOrNone('DELETE FROM Landlord WHERE id=${id} RETURNING id', req.params)
+    .then((data) => {
+      returnDataOr404(res, data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+// Read All Properties
 
 function readProperties(req, res, next) {
   db.many('SELECT * FROM Property')
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+// CRUD Single Property
+
+function createProperty(req, res, next) {
+  db.one('INSERT INTO Property(landlordID, bannerImage, streetAddress, bedroomNum, bathroomNum, price, distanceToCalvin, distanceToBusStop, petFriendly) VALUES (${landlordID, ${bannerImage}, ${streetAddress}, ${bedroomNum}, ${bathroomNum}, ${price}, ${distanceToCalvin}, ${distanceToBusStop}, ${petFriendly}) RETURNING id', req.body)
     .then((data) => {
       res.send(data);
     })
@@ -133,7 +231,27 @@ function readProperty(req, res, next) {
     });
 }
 
-// Review CRUD operations
+function updateProperty(req, res, next) {
+  db.oneOrNone('UPDATE property SET landlordID=${body.landlordID}, bannerImage=${body.bannerImage}, streetAddress=${body.streetAddress}, bedroomNum=${body.bedroomNum}, bathroomNum=${body.bathroomNum}, price=${price}, distanceToCalvin=${distanceToCalvin}, distanceToBusStop=${distanceToBusStop}, petFriendly=${petFriendly} WHERE id=${params.id} RETURNING id', req)
+    .then((data) => {
+      returnDataOr404(res, data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+function deleteProperty(req, res, next) {
+  db.oneOrNone('DELETE FROM Property WHERE id=${id} RETURNING id', req.params)
+    .then((data) => {
+      returnDataOr404(res, data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+// Read All Reviews
 
 function readReviews(req, res, next) {
   db.many('SELECT * FROM Review')
@@ -145,8 +263,52 @@ function readReviews(req, res, next) {
     });
 }
 
+// Read Reviews for a Property
+
 function readReviewsProperty(req, res, next) {
   db.oneOrNone('SELECT * FROM Review WHERE propertyID=${id}', req.params)
+    .then((data) => {
+      returnDataOr404(res, data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+// CRUD Single Review
+
+function createReview(req, res, next) {
+  db.one('INSERT INTO Review(studentID, propertyID, rating, reviewText) VALUES (${studentID}, ${propertyID}, ${rating}, ${reviewText})', req.body)
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+function readReview(req, res, next) {
+  db.oneOrNone('SELECT * FROM Review WHERE studentID=${studentID} AND propertyID=${propertyID}', req.params)
+    .then((data) => {
+      returnDataOr404(res, data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+function updateReview(req, res, next) {
+  db.oneOrNone('UPDATE Review SET studentID=${body.studentID}, propertyID=${body.propertyID}, rating=${body.rating}, reviewText=${body.reviewText} WHERE studentID=${params.studentID} AND propertyID=${params.propertyID}', req)
+    .then((data) => {
+      returnDataOr404(res, data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
+function deleteReview(req, res, next) {
+  db.oneOrNone('DELETE FROM Review WHERE studentID=${studentID} AND propertyID=${propertyID}', req.params)
     .then((data) => {
       returnDataOr404(res, data);
     })

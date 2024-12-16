@@ -19,6 +19,7 @@
     "pg-promise": "^11.10.2"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "react": "^18.3.1"
   }

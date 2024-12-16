@@ -14,7 +14,7 @@ It has the following read data route URLs:
 - `/properties` a list of properties
 - `/properties/:id` a single property with given ID
 - `/reviews` a list of reviews
-- `/reviews/:id` a single review with given ID
+- `/reviews/:id` a list of reviews with given propertyID
 
 It Is built out of the [Monopoly Webservice Proejct](https://github.com/calvin-cs262-organization/monopoly-service) by kvlinden
 

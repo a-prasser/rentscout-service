@@ -46,7 +46,7 @@ router.get('/landlords/:id', readLandlord);
 router.get('/students', readStudents);
 router.get('/students/:id', readStudent);
 router.get('/reviews', readReviews);
-router.get('/reviews/:id', readReview);
+router.get('/reviews/:id', readReviewsProperty);
 
 app.use(router);
 app.listen(port, () => console.log(`Listening on port ${port}`));
@@ -145,8 +145,8 @@ function readReviews(req, res, next) {
     });
 }
 
-function readReview(req, res, next) {
-  db.oneOrNone('SELECT * FROM Review WHERE id=${id}', req.params)
+function readReviewsProperty(req, res, next) {
+  db.oneOrNone('SELECT * FROM Review WHERE propertyID=${id}', req.params)
     .then((data) => {
       returnDataOr404(res, data);
     })

@@ -65,6 +65,6 @@ This backend was developed as part of the **CS 262 Software Engineering** course
 
 ## 📎 License & Credits
 
-This project was inspired by and adapted from the [Monopoly Webservice Project](https://github.com/kvlinden/monopoly-service).  
+This project was inspired by and adapted from the [Monopoly Webservice Project](https://github.com/calvin-cs262-organization/monopoly-service).  
 It is maintained and extended by student developers at Calvin University.
 
